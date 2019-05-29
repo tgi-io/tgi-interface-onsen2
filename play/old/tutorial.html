@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Onsen Tutorial</title>
+  <link rel="stylesheet" href="lib/onsen/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="lib/onsen/js/onsenui.js"></script>
+  <script src="tutorial.js"></script>
+</head>
+<body>
+
+
+
+<ons-splitter>
+  <!-- The side menu -->
+  <ons-splitter-side id="menu" collapse width="220px">
+    <ons-page>
+      <ons-list>
+        <ons-list-item onclick="loadPage('tutorial-about.html')">
+          About
+        </ons-list-item>
+      </ons-list>
+    </ons-page>
+  </ons-splitter-side>
+
+
+  <!-- Everything not in the side menu -->
+  <ons-navigator id="navigator">
+    <ons-page>
+      <div style="text-align: center; margin-top: 200px">
+        <p>
+          <ons-input id="username" placeholder="Username" modifier="underbar"></ons-input>
+        </p>
+
+        <p>
+          <ons-input
+                  id="password"
+                  placeholder="Password"
+                  type="password"
+                  modifier="underbar"
+          >
+          </ons-input>
+        </p>
+
+        <p>
+          <ons-button onclick="login()">Sign in</ons-button>
+        </p>
+      </div>
+
+    </ons-page>
+  </ons-navigator>
+</ons-splitter>
+
+<template id="home.html">
+  <ons-page id="home">
+    <ons-toolbar id="home-toolbar">
+      <div class="left">
+        <ons-toolbar-button onclick="openMenu()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">Home</div>
+    </ons-toolbar>
+    Hello There!
+  </ons-page>
+</template>
+
+
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 node_modules
-build
+play/old/build
 *.seed
 *.log
 *.csv
