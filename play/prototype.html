@@ -2,18 +2,241 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hello Onsen</title>
-  <script src="/dist/onsenui/js/onsenui.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>onsen prototype</title>
   <link rel="stylesheet" href="/dist/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="/dist/onsenui/css/onsen-css-components.css">
   <link rel="stylesheet" href="prototype.css">
+  <script src="/dist/onsenui/js/onsenui.js"></script>
+  <script src="prototype.js"></script>
 </head>
 <body>
-<ons-page>
-  <ons-toolbar>
-    <div class=”center”>Hello Onsen</div>
-  </ons-toolbar>
-  What's up?
-</ons-page>
+<ons-splitter>
+  <!-- The side menu -->
+  <ons-splitter-side id="menu" swipeable collapse width="220px">
+    <ons-page>
+      <ons-list>
+
+        <ons-list-item onclick="loadPage('home.html')">
+          <div class="left">
+            <ons-icon fixed-width class="list-item__icon" icon="fa-home" size="16px"></ons-icon>
+          </div>
+          <div class="center">
+            Home
+          </div>
+        </ons-list-item>
+
+        <ons-list-item onclick="loadPage('form.html')">
+          <div class="left">
+            <ons-icon fixed-width class="list-item__icon" icon="fa-table" size="16px"></ons-icon>
+          </div>
+          <div class="center">
+            Edit Form
+          </div>
+        </ons-list-item>
+
+        <ons-list-item expandable>
+          <div class="left">
+            <ons-icon fixed-width class="list-item__icon" icon="ellipsis-h" size="16px"></ons-icon>
+          </div>
+          <div class="center">
+            User Queries
+          </div>
+
+
+          <ons-page>
+            <ons-button onclick="showAlert()">Alert</ons-button>
+            <ons-button onclick="showConfirm()">Confirm</ons-button>
+            <ons-button onclick="showPrompt()">Prompt</ons-button>
+            <ons-button onclick="showToast()">Toast</ons-button>
+          </ons-page>
+
+          <div class="expandable-content">
+            <ons-list-item onclick="showToast('showToast()')">
+              <ons-icon fixed-width class="list-item__icon" icon="fa-bolt" size="16px"></ons-icon>
+              Info
+            </ons-list-item>
+            <ons-list-item onclick="showAlert('showAlert()')">
+              <ons-icon fixed-width class="list-item__icon" icon="fa-bolt" size="16px"></ons-icon>
+              OK
+            </ons-list-item>
+            <ons-list-item onclick="showConfirm('showConfirm()')">
+              <ons-icon fixed-width class="list-item__icon" icon="fa-bolt" size="16px"></ons-icon>
+              YesNo
+            </ons-list-item>
+            <ons-list-item onclick="showPrompt('showPrompt()')">
+              <ons-icon fixed-width class="list-item__icon" icon="fa-bolt" size="16px"></ons-icon>
+              Ask
+            </ons-list-item>
+            <ons-list-item onclick="actionJackson('actionJackson')">
+              <ons-icon fixed-width class="list-item__icon" icon="fa-bolt" size="16px"></ons-icon>
+              Choose
+            </ons-list-item>
+          </div>
+        </ons-list-item>
+
+        <ons-list-item onclick="loadPage('about.html')">
+          <div class="left">
+            <ons-icon fixed-width class="list-item__icon" icon="fa-table" size="16px"></ons-icon>
+          </div>
+          <div class="center">
+            About
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-page>
+  </ons-splitter-side>
+
+
+  <!-- Everything not in the side menu -->
+  <ons-navigator id="navigator">
+  </ons-navigator>
+</ons-splitter>
+
+<template id="home.html">
+  <ons-page id="home">
+    <ons-toolbar id="home-toolbar">
+      <div class="left">
+        <ons-toolbar-button onclick="openMenu()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">Home</div>
+    </ons-toolbar>
+
+    <p style="text-align: center; opacity: 0.6; padding: 20px;">
+      This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page.
+    </p>
+  </ons-page>
+</template>
+
+<template id="formOld.html">
+  <ons-page id="form">
+    <ons-toolbar id="form-toolbar">
+      <div class="left">
+        <ons-toolbar-button onclick="openMenu()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">Form</div>
+    </ons-toolbar>
+
+    <p style="text-align: center; opacity: 0.6; padding: 20px;">
+      This is a form.
+    </p>
+  </ons-page>
+</template>
+<template id="form.html">
+  <ons-page id="forms-page">
+    <ons-toolbar id="form-toolbar">
+      <div class="left">
+        <ons-toolbar-button onclick="openMenu()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">Form</div>
+    </ons-toolbar>
+    <ons-list>
+      <ons-list-header>Header Here</ons-list-header>
+
+      <ons-list-item class="input-items">
+        <div class="left" style="width: 96px" align="right">
+          <label style="width: 96px; font-size:90%">Name</label>
+          <!--Only include with material-->
+          &nbsp;&nbsp;
+        </div>
+        <label class="center">
+          <ons-input id="name-input" maxlength="20" placeholder="▫ ▫ ▫"></ons-input>
+        </label>
+      </ons-list-item>
+
+      <ons-list-item class="input-items">
+        <div class="left" style="width: 96px" align="right">
+          <label style="width: 96px; font-size:90%">Address</label>
+          <!--Only include with material-->
+          &nbsp;&nbsp;
+        </div>
+        <label class="center">
+          <ons-input id="birthday-input" type="date"></ons-input>
+        </label>
+      </ons-list-item>
+
+      <ons-list-item class="input-items">
+        <div class="left" style="width: 96px" align="right">
+          <label for="sex-switch1" style="width: 96px; font-size:90%">Check this checkbox out&nbsp;</label>
+          <!--Only include with material-->
+          &nbsp;&nbsp;
+        </div>
+        <div class="center">
+          <ons-switch id="sex-switch" input-id="sex-switch1" checked="true"></ons-switch>
+        </div>
+      </ons-list-item>
+
+
+      <ons-list-item class="input-items">
+        <div class="left" style="width: 96px" align="right">
+          <label style="width: 96px; font-size:90%">Food</label>
+          <!--Only include with material-->
+          &nbsp;&nbsp;
+        </div>
+        <label class="center">
+          <ons-select id="select-input" style="width: 120px">
+            <option value="Eat">
+              Eat
+            </option>
+            <option value="More">
+              More
+            </option>
+            <option value="Chiken">
+              Chiken
+            </option>
+          </ons-select>
+
+        </label>
+      </ons-list-item>
+
+      <section style="padding: 16px">
+        <p></p>
+        <div style="text-align:center">
+          <ons-button modifier="cta" onclick="alert('Button 1')">Button1</ons-button>
+          <ons-button onclick="alert('Button 2')">Button2</ons-button>
+          <ons-button modifier="light" onclick="alert('Button 3')">Button3</ons-button>
+        </div>
+      </section>
+    </ons-list>
+    <style>
+      .right-icon {
+        margin-left: 10px;
+      }
+
+      .right-label {
+        color: #666;
+      }
+    </style>
+  </ons-page>
+</template>
+
+<template id="about.html">
+  <ons-page id="about">
+    <ons-toolbar>
+      <div class="left">
+        <!--<ons-back-button></ons-back-button>-->
+        <ons-toolbar-button onclick="openMenu()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">About</div>
+    </ons-toolbar>
+
+    This is the about page.
+  </ons-page>
+</template>
+
 </body>
+<script>
+  document.querySelector('#navigator').resetToPage('home.html');
+  // document.querySelector('#menu').open();
+</script>
 </html>
