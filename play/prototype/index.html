@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="prototype.css">
   <script src="/dist/onsenui/js/onsenui.js"></script>
   <script src="prototype.js"></script>
+
 </head>
 <body>
 <ons-splitter>
@@ -239,4 +240,15 @@
   document.querySelector('#navigator').resetToPage('home.html');
   // document.querySelector('#menu').open();
 </script>
+
+<script>
+  console.log('sup');
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log("Service Worker Registered"))
+      .catch(e => console.log(e));
+  }
+  console.log('foo');
+</script>
+
 </html>
