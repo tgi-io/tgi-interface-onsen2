@@ -12,10 +12,7 @@ var childProcess = require('child_process');
 // Source and _packaging
 var libFiles = [
   'lib/tgi-interface-onsen2.lib.js',
-  'lib/tgi-interface-onsen2.source.js',
-  'lib/tgi-interface-onsen2-navigation.source.js',
-  'lib/tgi-interface-onsen2-panels.source.js',
-  'lib/tgi-interface-onsen2-queries.source.js'
+  'lib/tgi-interface-onsen2.source.js'
 ];
 var libPackaging = ['lib/_packaging/lib-header'].concat(['node_modules/tgi-core/dist/tgi.core.chunk.js']).concat(libFiles).concat(['lib/_packaging/lib-footer']);
 

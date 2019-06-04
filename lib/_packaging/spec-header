@@ -1,0 +1,5 @@
+/**---------------------------------------------------------------------------------------------------------------------
+ * tgi-interface-onsen2/lib/_packaging/spec-header
+ **/
+  var Onsen2Interface = TGI.INTERFACE.ONSEN2().Onsen2Interface;
+  spec.mute(true);
