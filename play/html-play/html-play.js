@@ -1,10 +1,10 @@
 /**---------------------------------------------------------------------------------------------------------------------
  * tgi-interface-onsen2/test/html-play.js
  **/
-var tgi = TGI.CORE();
-var bs = new (TGI.INTERFACE.ONSEN2().Onsen2Interface)({vendor: Date}); // no vendor function TODO wtf
-var app = new tgi.Application({interface: bs});
-var nav = new tgi.Presentation();
+const tgi = TGI.CORE();
+const bs = new (TGI.INTERFACE.ONSEN2().Onsen2Interface)({vendor: Date}); // no vendor function TODO wtf
+const app = new tgi.Application({interface: bs});
+const nav = new tgi.Presentation();
 app.setInterface(bs);
 app.set('brand', 'HTML Play');
 app.setPresentation(nav);
@@ -12,10 +12,10 @@ app.setPresentation(nav);
 /**
  * Commands
  */
-var name,
+let name,
   isDude,
   color;
-var userQueryCommand = new tgi.Command({
+const userQueryCommand = new tgi.Command({
   name: 'User Queries', type: 'Procedure', contents: new tgi.Procedure({
     tasks: [
       function () {
@@ -62,20 +62,22 @@ userQueryCommand.onEvent('*', function (event) {
   }
 });
 // Create a function command
-var funcCommand = new tgi.Command({name: 'Function', type: 'Function', contents: function () {
-  window.alert("Hello! I am an alert box!!");
-}});
+const funcCommand = new tgi.Command({
+  name: 'Function', type: 'Function', contents: function () {
+    window.alert("Hello! I am an alert box!!");
+  }
+});
 
 // Create a procedure command
-var procCommand = new tgi.Command({name: 'Procedure', type: 'Procedure', contents: new tgi.Procedure()});
+const procCommand = new tgi.Command({name: 'Procedure', type: 'Procedure', contents: new tgi.Procedure()});
 
 // Stub commands
-var stubMoe = new tgi.Command({name: 'Moe', description: 'Moses Horwitz', theme: 'primary', icon: 'fa-coffee'});
-var stubLarry = new tgi.Command({name: 'Larry', description: 'Louis Fienberg', theme: 'info', icon: 'fa-beer'});
-var stubCurly = new tgi.Command({name: 'Curly', description: 'Jerome Lester Horwitz', theme: 'warning', icon: 'fa-glass'});
+const stubMoe = new tgi.Command({name: 'Moe', description: 'Moses Horwitz', theme: 'primary', icon: 'fa-coffee'});
+const stubLarry = new tgi.Command({name: 'Larry', description: 'Louis Fienberg', theme: 'info', icon: 'fa-beer'});
+const stubCurly = new tgi.Command({name: 'Curly', description: 'Jerome Lester Horwitz', theme: 'warning', icon: 'fa-glass'});
 
 // Create sample presentation
-var pres = new tgi.Presentation();
+const pres = new tgi.Presentation();
 pres.set('contents', [
   '####INSTRUCTIONS\n\n' +
   'Enter some stuff then push some buttons.',
@@ -99,15 +101,17 @@ pres.set('contents', [
   stubCurly
 
 ]);
-var presCommand = new tgi.Command({name: 'Presentation', type: 'Presentation', contents: pres});
-var commands =   new tgi.Command({name: 'Commands', type: 'Menu', contents: [
-  'Command Types',
-  '-',
-  new tgi.Command({name: 'Stub', type: 'Stub'}),
-  presCommand,
-  funcCommand,
-  procCommand
-]});
+const presCommand = new tgi.Command({name: 'Presentation', type: 'Presentation', contents: pres});
+const commands = new tgi.Command({
+  name: 'Commands', type: 'Menu', contents: [
+    'Command Types',
+    '-',
+    new tgi.Command({name: 'Stub', type: 'Stub'}),
+    presCommand,
+    funcCommand,
+    procCommand
+  ]
+});
 
 /**
  * Navigation
@@ -144,4 +148,5 @@ nav.set('contents', [
 app.start(function (request) {
   app.info('' + request);
 });
+document.querySelector('#navigator').resetToPage('home.html');
 

@@ -11,8 +11,23 @@
   <link rel="stylesheet" href="html-play.css">
   <script src="/dist/onsenui/js/onsenui.js"></script>
   <script src="/dist/tgi-interface-onsen2.js"></script>
-  <script type="text/javascript" src="html-play.js"></script>
 </head>
 <body>
+<template id="home.html">
+  <ons-page id="home">
+    <ons-toolbar id="home-toolbar">
+      <div class="left">
+        <ons-toolbar-button onclick="document.querySelector('#menu').open()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">Home</div>
+    </ons-toolbar>
+    <p style="text-align: center; opacity: 0.6; padding: 20px;">
+      This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page.
+    </p>
+  </ons-page>
+</template>
+<script type="text/javascript" src="html-play.js"></script>
 </body>
 </html>

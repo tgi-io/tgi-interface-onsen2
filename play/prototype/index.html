@@ -14,88 +14,6 @@
 
 </head>
 <body>
-<ons-splitter>
-  <!-- The side menu -->
-  <ons-splitter-side id="menu" swipeable collapse width="220px">
-    <ons-page>
-      <ons-list>
-
-        <ons-list-item onclick="loadPage('home.html')">
-          <div class="left">
-            <ons-icon fixed-width class="list-item__icon" icon="fa-home" size="16px"></ons-icon>
-          </div>
-          <div class="center">
-            Home
-          </div>
-        </ons-list-item>
-
-        <ons-list-item onclick="loadPage('form.html')">
-          <div class="left">
-            <ons-icon fixed-width class="list-item__icon" icon="fa-table" size="16px"></ons-icon>
-          </div>
-          <div class="center">
-            Edit Form
-          </div>
-        </ons-list-item>
-
-        <ons-list-item expandable>
-          <div class="left">
-            <ons-icon fixed-width class="list-item__icon" icon="ellipsis-h" size="16px"></ons-icon>
-          </div>
-          <div class="center">
-            User Queries
-          </div>
-
-
-          <ons-page>
-            <ons-button onclick="showAlert()">Alert</ons-button>
-            <ons-button onclick="showConfirm()">Confirm</ons-button>
-            <ons-button onclick="showPrompt()">Prompt</ons-button>
-            <ons-button onclick="showToast()">Toast</ons-button>
-          </ons-page>
-
-          <div class="expandable-content">
-            <ons-list-item onclick="showToast('showToast()')">
-              <ons-icon fixed-width class="list-item__icon" icon="fa-bolt" size="16px"></ons-icon>
-              Info
-            </ons-list-item>
-            <ons-list-item onclick="showAlert('showAlert()')">
-              <ons-icon fixed-width class="list-item__icon" icon="fa-bolt" size="16px"></ons-icon>
-              OK
-            </ons-list-item>
-            <ons-list-item onclick="showConfirm('showConfirm()')">
-              <ons-icon fixed-width class="list-item__icon" icon="fa-bolt" size="16px"></ons-icon>
-              YesNo
-            </ons-list-item>
-            <ons-list-item onclick="showPrompt('showPrompt()')">
-              <ons-icon fixed-width class="list-item__icon" icon="fa-bolt" size="16px"></ons-icon>
-              Ask
-            </ons-list-item>
-            <ons-list-item onclick="actionJackson('actionJackson')">
-              <ons-icon fixed-width class="list-item__icon" icon="fa-bolt" size="16px"></ons-icon>
-              Choose
-            </ons-list-item>
-          </div>
-        </ons-list-item>
-
-        <ons-list-item onclick="loadPage('about.html')">
-          <div class="left">
-            <ons-icon fixed-width class="list-item__icon" icon="fa-table" size="16px"></ons-icon>
-          </div>
-          <div class="center">
-            About
-          </div>
-        </ons-list-item>
-      </ons-list>
-    </ons-page>
-  </ons-splitter-side>
-
-
-  <!-- Everything not in the side menu -->
-  <ons-navigator id="navigator">
-  </ons-navigator>
-</ons-splitter>
-
 <template id="home.html">
   <ons-page id="home">
     <ons-toolbar id="home-toolbar">
@@ -106,13 +24,11 @@
       </div>
       <div class="center">Home</div>
     </ons-toolbar>
-
     <p style="text-align: center; opacity: 0.6; padding: 20px;">
       This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page. This is the home page.
     </p>
   </ons-page>
 </template>
-
 <template id="formOld.html">
   <ons-page id="form">
     <ons-toolbar id="form-toolbar">
@@ -218,7 +134,6 @@
     </style>
   </ons-page>
 </template>
-
 <template id="about.html">
   <ons-page id="about">
     <ons-toolbar>
@@ -234,21 +149,90 @@
     This is the about page.
   </ons-page>
 </template>
-
+<ons-splitter>
+  <!-- The side menu -->
+  <ons-splitter-side id="menu" swipeable collapse width="220px">
+    <ons-page>
+      <ons-list>
+        <ons-list-item onclick="loadPage('home.html')">
+          <div class="left">
+            <ons-icon fixed-width class="list-item__icon" icon="fa-home" size="16px"></ons-icon>
+          </div>
+          <div class="center">
+            Home
+          </div>
+        </ons-list-item>
+        <ons-list-item onclick="loadPage('form.html')">
+          <div class="left">
+            <ons-icon fixed-width class="list-item__icon" icon="fa-table" size="16px"></ons-icon>
+          </div>
+          <div class="center">
+            Edit Form
+          </div>
+        </ons-list-item>
+        <ons-list-item expandable>
+          <div class="left">
+            <ons-icon fixed-width class="list-item__icon" icon="ellipsis-h" size="16px"></ons-icon>
+          </div>
+          <div class="center">
+            User Queries
+          </div>
+          <ons-page>
+            <ons-button onclick="showAlert()">Alert</ons-button>
+            <ons-button onclick="showConfirm()">Confirm</ons-button>
+            <ons-button onclick="showPrompt()">Prompt</ons-button>
+            <ons-button onclick="showToast()">Toast</ons-button>
+          </ons-page>
+          <div class="expandable-content">
+            <ons-list-item onclick="showToast('showToast()')">
+              <ons-icon fixed-width class="list-item__icon" icon="fa-bolt" size="16px"></ons-icon>
+              Info
+            </ons-list-item>
+            <ons-list-item onclick="showAlert('showAlert()')">
+              <ons-icon fixed-width class="list-item__icon" icon="fa-bolt" size="16px"></ons-icon>
+              OK
+            </ons-list-item>
+            <ons-list-item onclick="showConfirm('showConfirm()')">
+              <ons-icon fixed-width class="list-item__icon" icon="fa-bolt" size="16px"></ons-icon>
+              YesNo
+            </ons-list-item>
+            <ons-list-item onclick="showPrompt('showPrompt()')">
+              <ons-icon fixed-width class="list-item__icon" icon="fa-bolt" size="16px"></ons-icon>
+              Ask
+            </ons-list-item>
+            <ons-list-item onclick="actionJackson('actionJackson')">
+              <ons-icon fixed-width class="list-item__icon" icon="fa-bolt" size="16px"></ons-icon>
+              Choose
+            </ons-list-item>
+          </div>
+        </ons-list-item>
+        <ons-list-item onclick="loadPage('about.html')">
+          <div class="left">
+            <ons-icon fixed-width class="list-item__icon" icon="fa-table" size="16px"></ons-icon>
+          </div>
+          <div class="center">
+            About
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-page>
+  </ons-splitter-side>
+  <!-- Everything not in the side menu -->
+  <ons-navigator id="navigator">
+  </ons-navigator>
+</ons-splitter>
 </body>
 <script>
   document.querySelector('#navigator').resetToPage('home.html');
   // document.querySelector('#menu').open();
 </script>
-
 <script>
-  console.log('sup');
-  if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js')
-      .then(() => console.log("Service Worker Registered"))
-      .catch(e => console.log(e));
-  }
-  console.log('foo');
+  // console.log('sup');
+  // if('serviceWorker' in navigator) {
+  //   navigator.serviceWorker.register('sw.js')
+  //     .then(() => console.log("Service Worker Registered"))
+  //     .catch(e => console.log(e));
+  // }
+  // console.log('foo');
 </script>
-
 </html>
