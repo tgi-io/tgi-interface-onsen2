@@ -89,7 +89,7 @@ pres.set('contents', [
   new tgi.Attribute({name: 'state', label: 'State', type: 'String(2)'}),
   new tgi.Attribute({name: 'zip', label: 'Zip Code', type: 'String(10)', placeHolder: '#####-####'}),
   new tgi.Attribute({name: 'birthDate', label: 'Birth Date', type: 'Date', value: new Date()}),
-  new tgi.Attribute({name: 'drink', type: 'String(25)', quickPick:['Water','Coke','Coffee']}),
+  new tgi.Attribute({name: 'drink', type: 'String(25)', quickPick: ['Water', 'Coke', 'Coffee']}),
   new tgi.Attribute({name: 'sex', type: 'Boolean', value: true}),
   new tgi.Attribute({name: 'drugs', type: 'Boolean', value: false}),
   new tgi.Attribute({name: 'IQ', type: 'Number', value: 100}),
@@ -117,29 +117,41 @@ const commands = new tgi.Command({
  * Navigation
  */
 nav.set('contents', [
-  new tgi.Command({name: 'Stooges', type: 'Menu', theme: 'info', icon: 'fa-info-circle', contents: [
-    'The Three Stooges',
-    '-',
-    stubMoe,
-    stubLarry,
-    stubCurly
-  ]}),
+  new tgi.Command({
+    name: 'Stooges', type: 'Menu', theme: 'info', icon: 'fa-info-circle', contents: [
+      'The Three Stooges',
+      '-',
+      stubMoe,
+      stubLarry,
+      stubCurly
+    ]
+  }),
   commands,
   userQueryCommand,
-  new tgi.Command({name: 'Info', type: 'Function', theme: 'info', icon: 'fa-info-circle', contents: function () {
-    app.info('The current date and time is ' + new Date());
-  }}),
-  new tgi.Command({name: 'Done', type: 'Function', theme: 'success', icon: 'fa-check', contents: function () {
-    app.done('Soups Done!');
-  }}),
-  new tgi.Command({name: 'Warning', type: 'Function', theme: 'warning', icon: 'fa-exclamation-circle', contents: function () {
-    app.warn('Do not try this at home.');
-  }}),
-  new tgi.Command({name: 'Error', type: 'Function', theme: 'danger', icon: 'fa-exclamation-triangle', contents: function () {
-    app.err('You broke it now!');
-  }}),
+  new tgi.Command({
+    name: 'Info', type: 'Function', theme: 'info', icon: 'fa-info-circle', contents: function () {
+      app.info('The current date and time is ' + new Date());
+    }
+  }),
+  new tgi.Command({
+    name: 'Done', type: 'Function', theme: 'success', icon: 'fa-check', contents: function () {
+      app.done('Soups Done!');
+    }
+  }),
+  new tgi.Command({
+    name: 'Warning', type: 'Function', theme: 'warning', icon: 'fa-exclamation-circle', contents: function () {
+      app.warn('Do not try this at home.');
+    }
+  }),
+  new tgi.Command({
+    name: 'Error', type: 'Function', theme: 'danger', icon: 'fa-exclamation-triangle', contents: function () {
+      app.err('You broke it now!');
+    }
+  }),
   '-',
-  new tgi.Command({name: 'Account'})
+  new tgi.Command({name: 'Account',  theme: 'danger', icon: 'fa-user-cog'})
+
+  //<i class="fas fa-sign-in-alt"></i>
 ]);
 
 /**
@@ -149,4 +161,5 @@ app.start(function (request) {
   app.info('' + request);
 });
 document.querySelector('#navigator').resetToPage('home.html');
+// document.querySelector('#menu').open();
 
