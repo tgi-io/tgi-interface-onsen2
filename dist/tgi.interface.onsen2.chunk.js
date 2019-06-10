@@ -245,6 +245,7 @@ Onsen2Interface.prototype.htmlPanels = function () {
  * activatePanel will create if needed, make panel visible and render contents
  */
 Onsen2Interface.prototype.activatePanel = function (command) {
+  console.log('Onsen2Interface.prototype.activatePanel');
 
   var onsen2Interface = this;
   var addEle = Onsen2Interface.addEle;
@@ -254,7 +255,7 @@ Onsen2Interface.prototype.activatePanel = function (command) {
   var theme = command.theme || 'default';
   var icon = command.icon;
   if (icon) {
-    if (left(icon, 2) == 'fa')
+    if (left(icon, 2) === 'fa')
       icon = '<i class="fa ' + icon + '"></i>&nbsp;';
     else
       icon = '<span class="glyphicon ' + icon + '"></span>&nbsp;';
@@ -272,7 +273,7 @@ Onsen2Interface.prototype.activatePanel = function (command) {
    */
   var panel;
   for (var i = 0; (typeof panel == 'undefined') && i < this.panels.length; i++) {
-    if (name == this.panels[i].name)
+    if (name === this.panels[i].name)
       panel = this.panels[i];
   }
 
@@ -295,109 +296,49 @@ Onsen2Interface.prototype.activatePanel = function (command) {
       textListeners: []
     };
     this.panels.push(panel);
-
-    /**
-     * Main framing and title text
-     */
-    panel.panelDiv = addTopEle(this.doc.panelRow, 'div', 'panel panel-' + theme);
-    panel.panelHeading = addEle(panel.panelDiv, 'div', 'panel-heading');
-    panel.panelTitle = addEle(panel.panelHeading, 'div', 'panel-title');
-    panel.panelTitleText = addEle(panel.panelTitle, 'a', 'panel-title-text', {href: '#'});
-    panel.panelTitleText.innerHTML = title;
-    panel.panelBody = addEle(panel.panelDiv, 'div', 'panel-body bg-' + theme);
-    panel.panelWell = addEle(panel.panelBody, 'div', 'well-panel');
-    panel.panelForm = addEle(panel.panelWell, 'form', 'form-horizontal');
-
-    /**
-     * Close Panel Button
-     */
-    panel.panelClose = addEle(panel.panelTitle, 'a', undefined, {href: '#'});
-    panel.panelClose.innerHTML = '<span class="glyphicon glyphicon-remove panel-glyph-right pull-right text-muted"></span>';
-    $(panel.panelClose).click(function (e) {
-      onsen2Interface.destroyPanel(panel);
-      e.preventDefault();
-    });
-    panel.listeners.push(panel.panelClose); // so we can avoid leakage on deleting panel
-
-    /**
-     * Hide Panel Button
-     */
-    panel.panelHide = addEle(panel.panelTitle, 'a', undefined, {href: '#'});
-    panel.panelHide.innerHTML = '<span class="glyphicon glyphicon-chevron-down panel-glyph-right pull-right text-muted"></span>';
-    $(panel.panelHide).click(function (e) {
-      $(panel.panelBody).hide('fast');
-      $(panel.panelHide).hide();
-      $(panel.panelShow).show();
-      e.preventDefault();
-    });
-    panel.listeners.push(panel.panelHide);
-
-    /**
-     * Show Panel Button
-     */
-    panel.panelShow = addEle(panel.panelTitle, 'a', undefined, {href: '#'});
-    panel.panelShow.innerHTML = '<span class="glyphicon glyphicon-chevron-left panel-glyph-right pull-right text-muted"></span>';
-    $(panel.panelShow).hide();
-    $(panel.panelShow).click(function (e) {
-      $(panel.panelBody).show('fast');
-      $(panel.panelHide).show();
-      $(panel.panelShow).hide();
-      e.preventDefault();
-    });
-    panel.listeners.push(panel.panelShow);
-
   }
 
   /**
    * Render panel body
    */
   onsen2Interface.renderPanelBody(panel, command);
-  $(panel.panelBody).show('fast'); //
-  $(panel.panelHide).show();
-  $(panel.panelShow).hide();
-  $('html, body').animate({
-    scrollTop: $(panel.panelDiv).offset().top - $(onsen2Interface.doc.sideMenu).height() - 8
-  }, 250);
+
 };
 
 /**
  * When deleting panel remove references to avoid leakage
  */
 Onsen2Interface.prototype.destroyPanel = function (panel) {
+  console.log('Onsen2Interface.prototype.destroyPanel');
   var onsen2Interface = this;
   var i, ele;
   /**
    * Remove this panel from global panel list
    */
   for (i = 0; i < onsen2Interface.panels.length; i++) {
-    if (panel == onsen2Interface.panels[i])
+    if (panel === onsen2Interface.panels[i])
       onsen2Interface.panels.splice(i, 1);
   }
   /**
    * Remove listeners before deleting
    */
-  for (i = 0; i < panel.listeners.length; i++) {
-    ele = panel.listeners[i];
-    $(ele).off();
-  }
-  for (i = 0; i < panel.attributeListeners.length; i++) {
-    ele = panel.attributeListeners[i];
-    ele.offEvent();
-  }
-  for (i = 0; i < panel.textListeners.length; i++) {
-    ele = panel.textListeners[i];
-    ele.offEvent();
-  }
+  // for (i = 0; i < panel.listeners.length; i++) {
+  //   ele = panel.listeners[i];
+  //   $(ele).off();
+  // }
+  // for (i = 0; i < panel.attributeListeners.length; i++) {
+  //   ele = panel.attributeListeners[i];
+  //   ele.offEvent();
+  // }
+  // for (i = 0; i < panel.textListeners.length; i++) {
+  //   ele = panel.textListeners[i];
+  //   ele.offEvent();
+  // }
 
   /**
-   * Causes memory leaking when doing soak test
+   * Remove panel...
    */
-  $('html, body').stop();
 
-  /**
-   * Remove panel from
-   */
-  $(panel.panelDiv).remove();
 
 };
 
@@ -405,6 +346,7 @@ Onsen2Interface.prototype.destroyPanel = function (panel) {
  * renderPanelBody will insert the html into the body of the panel for View presentation mode
  */
 Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
+  console.log('Onsen2Interface.prototype.renderPanelBody');
   var onsen2Interface = this;
   var addEle = Onsen2Interface.addEle;
   var i, j, indent = false, txtDiv;
@@ -438,6 +380,8 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
    * function to render Attribute
    */
   function renderText(text) {
+    return;
+
     var textDiv = addEle(panel.panelForm, 'div', indent ? 'col-sm-offset-3' : '');
     textDiv.innerHTML = marked(text.get());
     text.onEvent('StateChange', function () {
@@ -450,6 +394,7 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
    * function to render Attribute for Edit
    */
   function renderAttribute(attribute, mode) {
+    return;
 
     var daList;
     var daItems;
@@ -716,7 +661,7 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
    * function to render List
    */
   function renderList(list, theme) {
-
+    return;
 
     var txtDiv = document.createElement("table");
     txtDiv.className = 'table table-condensed table-bordered table-hover-' + theme;
@@ -788,6 +733,7 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
    * function to render Command
    */
   function renderCommand(command) {
+    return;
 
     if (!panel.buttonDiv) {
       var formGroup = addEle(panel.panelForm, 'div', 'form-group');

@@ -2,10 +2,10 @@
  * tgi-interface-onsen2/test/html-play.js
  **/
 const tgi = TGI.CORE();
-const bs = new (TGI.INTERFACE.ONSEN2().Onsen2Interface)({vendor: Date}); // no vendor function TODO wtf
-const app = new tgi.Application({interface: bs});
+const ui = new (TGI.INTERFACE.ONSEN2().Onsen2Interface)({vendor: Date}); // no vendor function TODO wtf
+const app = new tgi.Application({interface: ui});
 const nav = new tgi.Presentation();
-app.setInterface(bs);
+app.setInterface(ui);
 app.set('brand', 'HTML Play');
 app.setPresentation(nav);
 
