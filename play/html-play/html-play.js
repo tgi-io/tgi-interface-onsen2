@@ -157,9 +157,12 @@ nav.set('contents', [
 /**
  * Start the app
  */
+console.log('wtf');
 app.start(function (request) {
   app.info('' + request);
 });
-document.querySelector('#navigator').resetToPage('home.html');
-// document.querySelector('#menu').open();
+setTimeout(function () {
+  document.querySelector('#navigator').resetToPage('home.html');
+  document.querySelector('#menu').open();
+}, 250);
 
