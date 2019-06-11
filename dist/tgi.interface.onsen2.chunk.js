@@ -249,52 +249,29 @@ Onsen2Interface.prototype.activatePanel = function (command) {
 
   var onsen2Interface = this;
   var addEle = Onsen2Interface.addEle;
-  var addTopEle = Onsen2Interface.addTopEle;
   var presentation = command.contents;
   var name = presentation.get('name') || command.name;
-  var theme = command.theme || 'default';
-  var icon = command.icon;
-  if (icon) {
-    if (left(icon, 2) === 'fa')
-      icon = '<i class="fa ' + icon + '"></i>&nbsp;';
-    else
-      icon = '<span class="glyphicon ' + icon + '"></span>&nbsp;';
-  }
-  var title = icon ? icon + name : name;
 
   /**
-   * this.panels array of panels
+   * onsen2Interface.panels array of panels
    */
-  if (typeof this.panels == 'undefined')
-    this.panels = [];
+  if (typeof onsen2Interface.panels == 'undefined')
+    onsen2Interface.panels = [];
 
   /**
    * See if command already has a panel
    */
   var panel;
-  for (var i = 0; (typeof panel == 'undefined') && i < this.panels.length; i++) {
-    if (name === this.panels[i].name)
-      panel = this.panels[i];
-  }
-
-  /**
-   * For now destroy and recreate panel
-   */
-  if (typeof panel != 'undefined') {
-    onsen2Interface.destroyPanel(panel);
-    panel = undefined;
+  for (var i = 0; (typeof panel == 'undefined') && i < onsen2Interface.panels.length; i++) {
+    if (name === onsen2Interface.panels[i].name)
+      panel = onsen2Interface.panels[i];
   }
 
   /**
    * If we did not find panel create
    */
   if (typeof panel == 'undefined') {
-    panel = {
-      name: name,
-      listeners: [],
-      attributeListeners: [],
-      textListeners: []
-    };
+    panel = {name: name, id: this.panels.length};
     this.panels.push(panel);
   }
 
@@ -303,6 +280,64 @@ Onsen2Interface.prototype.activatePanel = function (command) {
    */
   onsen2Interface.renderPanelBody(panel, command);
 
+  document.querySelector('#menu').close();
+  var panelID = 'panel' + panel.id + '.html';
+  console.log('panelID ' + panelID);
+  document.querySelector('#navigator').resetToPage(panelID);
+  // document.querySelector('#navigator').resetToPage('best.html');
+
+  return;
+  // var onsen2Interface = this;
+  // var addEle = Onsen2Interface.addEle;
+  // var addTopEle = Onsen2Interface.addTopEle;
+  // var presentation = command.contents;
+  // var name = presentation.get('name') || command.name;
+  // var theme = command.theme || 'default';
+  // var icon = command.icon;
+  // if (icon) {
+  //   if (left(icon, 2) === 'fa')
+  //     icon = '<i class="fa ' + icon + '"></i>&nbsp;';
+  //   else
+  //     icon = '<span class="glyphicon ' + icon + '"></span>&nbsp;';
+  // }
+  // var title = icon ? icon + name : name;
+  /**
+   * this.panels array of panels
+   if (typeof this.panels == 'undefined')
+   this.panels = [];
+   */
+  /**
+   * See if command already has a panel
+
+   var panel;
+   for (var i = 0; (typeof panel == 'undefined') && i < this.panels.length; i++) {
+    if (name === this.panels[i].name)
+      panel = this.panels[i];
+  }
+   */
+  /**
+   * For now destroy and recreate panel
+   */
+  if (typeof panel != 'undefined') {
+    onsen2Interface.destroyPanel(panel);
+    panel = undefined;
+  }
+  /**
+   * If we did not find panel create
+   if (typeof panel == 'undefined') {
+    panel = {
+      name: name,
+      listeners: [],
+      attributeListeners: [],
+      textListeners: []
+    };
+    this.panels.push(panel);
+  }
+   */
+  /**
+   * Render panel body
+   onsen2Interface.renderPanelBody(panel, command);
+   */
 };
 
 /**
@@ -310,6 +345,8 @@ Onsen2Interface.prototype.activatePanel = function (command) {
  */
 Onsen2Interface.prototype.destroyPanel = function (panel) {
   console.log('Onsen2Interface.prototype.destroyPanel');
+  return;
+
   var onsen2Interface = this;
   var i, ele;
   /**
@@ -349,6 +386,25 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
   console.log('Onsen2Interface.prototype.renderPanelBody');
   var onsen2Interface = this;
   var addEle = Onsen2Interface.addEle;
+  var contents = command.contents.get('contents');
+
+  if (!panel.template) {
+    console.log('create : ' + JSON.stringify(panel));
+
+
+    panel.template = document.createElement('template');
+    panel.template.id = 'panel' + panel.id + '.html';
+    panel.template.innerHTML = '<ons-page id="pg' + panel.id + '">' +
+      '<ons-toolbar id="tb' + panel.id + '">' +
+      '<div class="left"><ons-toolbar-button onclick="document.querySelector(\'#menu\').open()"><ons-icon icon="md-menu"></ons-icon></ons-toolbar-button></div>' +
+      '<div class="center">' + panel.name + '</div>' +
+      '</ons-toolbar></ons-page>';
+    document.body.appendChild(panel.template);
+  }
+  return;
+
+  var onsen2Interface = this;
+  var addEle = Onsen2Interface.addEle;
   var i, j, indent = false, txtDiv;
   var contents = command.contents.get('contents');
   panel.buttonDiv = null;
@@ -376,6 +432,7 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
     if (contents[i] instanceof List) renderList(contents[i], command.theme);
     if (contents[i] instanceof Command) renderCommand(contents[i]);
   }
+
   /**
    * function to render Attribute
    */
@@ -605,7 +662,7 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
     attribute.onEvent('StateChange', function () {
       switch (mode + attribute.type) {
         case 'EditBoolean':
-          if (( attribute.value ? true : false ) != input.checked)
+          if ((attribute.value ? true : false) != input.checked)
             $(input).click();
           break;
         case 'EditDate':
