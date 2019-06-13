@@ -47,7 +47,7 @@ var beerCommand = new tgi.Command({
 var infoPresentation = new tgi.Presentation();
 infoPresentation.set('contents', [
   'Info\n---',
-  'This is themed `info` with an icon *(glyphicon-info-sign)*.',
+  'This is themed `info` with an icon that is broken *(glyphicon-info-sign)*.',
   '-',
   'Note the divider above and below to understand _read the code Luke_',
   '-',
@@ -346,6 +346,5 @@ app.start(function (request) {
 // }).execute(ui);
 
 setTimeout(function () {
-  document.querySelector('#navigator').resetToPage('home.html');
-  document.querySelector('#menu').open();
+  attributeCommand.execute(ui);
 }, 250);
