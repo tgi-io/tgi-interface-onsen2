@@ -56,26 +56,47 @@
       <div class="center">Form</div>
     </ons-toolbar>
     <ons-list>
+      <ons-list-item>
+        <div class="button-bar" style="width:280px;">
+          <div class="button-bar__item">
+            <button class="button-bar__button">One thing can be big</button>
+          </div>
+          <div class="button-bar__item">
+            <button class="button-bar__button">Two</button>
+          </div>
+          <div class="button-bar__item">
+            <button class="button-bar__button">Three</button>
+          </div>
+        </div>
+      </ons-list-item>
+      <section style="padding: 16px">
+        <div style="text-align:center">
+          <ons-button modifier="cta" onclick="alert('Button 1')">Eat</ons-button>
+          <ons-button onclick="alert('Button 2')">More</ons-button>
+          <ons-button modifier="light" onclick="alert('Button 3')">Chicken</ons-button>
+          <ons-button modifier="cta" onclick="alert('Button 1')">Or whatever</ons-button>
+          <ons-button onclick="alert('Button 2')">Button2</ons-button>
+          <ons-button modifier="light" onclick="alert('Button 3')">Button3</ons-button>
+        </div>
+      </section>
       <ons-list-title>ons-list-title</ons-list-title>
-
-        <ons-list-item>ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item
-                       ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item
-                       ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item
-                       ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item
-                       ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item
-                       ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item
-                       ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item
-                       ons-list-item ons-list-item ons-list-item ons-list-item
-        </ons-list-item>
-        <ons-list-item>ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item</ons-list-item>
-        <ons-list-item>ons-list-item ons-list-item ons-list-item</ons-list-item>
-        <ons-list-item>ons-list-item</ons-list-item>
-        <ons-list-title>
-          <h4>H4 here</h4>
-          <p>p here</p>
-          <p>p here</p>
-        </ons-list-title>
-
+      <ons-list-item>ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item
+                     ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item
+                     ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item
+                     ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item
+                     ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item
+                     ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item
+                     ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item
+                     ons-list-item ons-list-item ons-list-item ons-list-item
+      </ons-list-item>
+      <ons-list-item>ons-list-item ons-list-item ons-list-item ons-list-item ons-list-item</ons-list-item>
+      <ons-list-item>ons-list-item ons-list-item ons-list-item</ons-list-item>
+      <ons-list-item>ons-list-item</ons-list-item>
+      <ons-list-title>
+        <h4>H4 here</h4>
+        <p>p here</p>
+        <p>p here</p>
+      </ons-list-title>
       <ons-list-header>Header Here</ons-list-header>
       <ons-list-item class="input-items">
         <div class="left" style="width: 96px" align="right">
@@ -105,7 +126,7 @@
           &nbsp;&nbsp;
         </div>
         <label class="center">
-          <ons-input id="birthday-input" type="date" placeholder="MMDDYYYY" input-min-width-95p></ons-input>
+          <ons-input id="birthday-input" type="date" style="min-width:95%"></ons-input>
         </label>
       </ons-list-item>
       <ons-list-item class="input-items">

@@ -367,8 +367,12 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
     var i, j, indent = false;
     var onsList = addEle(document.getElementById('pc' + panel.id), 'ons-list');
     var contents = command.contents.get('contents');
-    console.log('herererer');
+    var uniqueID;
+    var buttonDiv; // This will group contiguous commands
     for (i = 0; i < contents.length; i++) {
+      // first if not button reset container for them
+      if (!(ele instanceof Command)) buttonDiv = undefined;
+      uniqueID = 'id' + panel.id + '_' + i;
       var ele = contents[i];
       if (typeof ele == 'string')
         renderString(onsList, ele);
@@ -417,9 +421,59 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
     }
 
     function renderAttribute(onsList, attribute, mode) {
-      var listItem = addEle(onsList, 'ons-list-item', 'input-items');
-      var leftDiv = addEle(listItem, 'div', 'left', {style: 'width: 96px', align: 'right'});
-      leftDiv.innerHTML = '<label style="width: 96px; font-size:90%">' + attribute.label + '</label>&nbsp;&nbsp;';
+      var onsInput,centerContainer,leftContainer,listItem;
+      switch (mode + attribute.type) {
+        case 'ViewDate':
+          listItem = addEle(onsList, 'ons-list-item', 'input-items');
+          leftContainer = addEle(listItem, 'div', 'left', {style: 'width: 96px', align: 'right'});
+          leftContainer.innerHTML = '<label style="width: 96px; font-size:90%">' + attribute.label + '</label>&nbsp;&nbsp;';
+          centerContainer = addEle(listItem, 'label', 'center');
+          if (attribute.value)
+            centerContainer.innerHTML = (1 + attribute.value.getMonth()) + '/' + attribute.value.getDate() + '/' + attribute.value.getFullYear();
+          break;
+        case 'ViewNumber':
+        case 'ViewString':
+          listItem = addEle(onsList, 'ons-list-item', 'input-items');
+          leftContainer = addEle(listItem, 'div', 'left', {style: 'width: 96px', align: 'right'});
+          leftContainer.innerHTML = '<label style="width: 96px; font-size:90%">' + attribute.label + '</label>&nbsp;&nbsp;';
+          centerContainer = addEle(listItem, 'label', 'center');
+          if (attribute.value)
+            centerContainer.innerHTML = attribute.value;
+          break;
+        case 'ViewBoolean':
+          listItem = addEle(onsList, 'ons-list-item', 'input-items');
+          leftContainer = addEle(listItem, 'div', 'left', {style: 'width: 96px', align: 'right'});
+          leftContainer.innerHTML = '<label style="width: 96px; font-size:90%">' + attribute.label + '</label>&nbsp;&nbsp;';
+          centerContainer = addEle(listItem, 'div', 'center');
+          if (attribute.value)
+            centerContainer.innerHTML = '<ons-switch disabled checked="true"></ons-switch>';
+          else
+            centerContainer.innerHTML = '<ons-switch disabled></ons-switch>';
+          //attribute.value
+          break;
+
+        default:
+          listItem = addEle(onsList, 'ons-list-item', 'input-items');
+          leftContainer = addEle(listItem, 'div', 'left', {style: 'width: 96px', align: 'right'});
+          leftContainer.innerHTML = '<label style="width: 96px; font-size:90%">' + attribute.label + '</label>&nbsp;&nbsp;';
+          centerContainer = addEle(listItem, 'label', 'center');
+          centerContainer.innerHTML = 'default: ' + mode + attribute.type;
+          // onsInput = addEle(centerLabel, 'ons-input', undefined, {id: uniqueID, maxLength: 50, placeholder: 'placeholder'});
+          // onsInput.value = attribute.value;
+      }
+
+      /*
+      <ons-list-item class="input-items">
+        <div class="left" style="width: 96px" align="right">
+          <label style="width: 96px; font-size:90%">Name</label>
+          <!--Only include with material-->
+          &nbsp;&nbsp;
+        </div>
+        <label class="center">
+          <ons-input id="name-input" maxlength="20" placeholder="Name"></ons-input>
+        </label>
+      </ons-list-item>
+      */
       return;
       {
         var daList;
@@ -735,8 +789,30 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
     }
 
     function renderCommand(onsList, command) {
-      var listItem = addEle(onsList, 'ons-list-item');
-      listItem.innerHTML = ' renderCommand: ' + command;
+      var section;
+      if (!buttonDiv) { // If no button container create
+        section = addEle(onsList, 'section', undefined, {style: "padding: 16px"});
+        buttonDiv = addEle(section, 'div', undefined, {style: "text-align:left"});
+      }
+      var button = addEle(buttonDiv, 'ons-button', undefined, {style: "margin: 8px;fixed-width: 100px", onclick: "alert('This button sucks');"});
+      button.innerText = command.name;
+
+      // var listItem = addEle(onsList, 'ons-list-item');
+      // listItem.innerHTML = ' renderCommand: ' + command;
+
+      /*
+            <section style="padding: 16px">
+              <div style="text-align:center">
+                <ons-button modifier="cta" onclick="alert('Button 1')">Button1</ons-button>
+                <ons-button onclick="alert('Button 2')">Button2</ons-button>
+                <ons-button modifier="light" onclick="alert('Button 3')">Button3</ons-button>
+                <ons-button modifier="cta" onclick="alert('Button 1')">Button1</ons-button>
+                <ons-button onclick="alert('Button 2')">Button2</ons-button>
+                <ons-button modifier="light" onclick="alert('Button 3')">Button3</ons-button>
+              </div>
+            </section>
+      */
+
       return;
       {
         if (!panel.buttonDiv) {
