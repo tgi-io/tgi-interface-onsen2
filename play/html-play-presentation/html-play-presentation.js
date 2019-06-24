@@ -283,8 +283,13 @@ var loginCommand = new tgi.Command({
   type: 'Presentation',
   //theme: 'info',
   icon: 'fa-sign-in',
+  presentationMode: 'Edit',
   contents: loginPresentation
 });
+
+// loginCommand.presentationMode = '';
+// viewEditCommand.name = viewEditCommand.name=='Edit' ? 'View' : 'Edit';
+
 
 /**
  * DOM leakage testing
