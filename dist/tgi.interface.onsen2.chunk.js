@@ -258,6 +258,7 @@ Onsen2Interface.prototype.activatePanel = function (command) {
     panel = {
       name: name,
       textListeners: [],
+      attributeListeners: [],
       id: this.panels.length
     };
     this.panels.push(panel);
@@ -302,6 +303,10 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
     ele = panel.textListeners[i];
     ele.offEvent();
   }
+  for (i = 0; i < panel.attributeListeners.length; i++) {
+    ele = panel.attributeListeners[i];
+    ele.offEvent();
+  }
 
   /**
    * Set Page Display
@@ -312,87 +317,21 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
       renderContents();
     });
 
-
-  // var panelContents = document.getElementById('pc' + panel.id);
-  // panelContents.innerHTML='pc' + panel.id;
-  // document.getElementById('myPopoverData').innerHTML = document.getElementById('myInput').value;
-  // var i, j, indent = false, txtDiv;
-  // panel.buttonDiv = null;
-  // $(panel.panelForm).empty();
-  // for (i = 0; i < contents.length; i++) {
-  //   if (typeof contents[i] == 'string') {
-  //     switch (contents[i]) {
-  //       case '-':
-  //         panel.panelForm.appendChild(document.createElement("hr"));
-  //         break;
-  //       case '>':
-  //         indent = true;
-  //         break;
-  //       case '<':
-  //         indent = false;
-  //         break;
-  //       default:
-  //         txtDiv = addEle(panel.panelForm, 'div', indent ? 'col-sm-offset-3' : '');
-  //         txtDiv.innerHTML = marked(contents[i]);
-  //         break;
-  //     }
-  //   }
-  //   if (contents[i] instanceof Text) renderText(contents[i]);
-  //   if (contents[i] instanceof Attribute) renderAttribute(contents[i], command.presentationMode);
-  //   if (contents[i] instanceof List) renderList(contents[i], command.theme);
-  //   if (contents[i] instanceof Command) renderCommand(contents[i]);
-  // }
-
-  // var onsen2Interface = this;
-  // var addEle = Onsen2Interface.addEle;
-  // var i, j, indent = false, txtDiv;
-  // var contents = command.contents.get('contents');
-  // panel.buttonDiv = null;
-  // $(panel.panelForm).empty();
-  // for (i = 0; i < contents.length; i++) {
-  //   if (typeof contents[i] == 'string') {
-  //     switch (contents[i]) {
-  //       case '-':
-  //         panel.panelForm.appendChild(document.createElement("hr"));
-  //         break;
-  //       case '>':
-  //         indent = true;
-  //         break;
-  //       case '<':
-  //         indent = false;
-  //         break;
-  //       default:
-  //         txtDiv = addEle(panel.panelForm, 'div', indent ? 'col-sm-offset-3' : '');
-  //         txtDiv.innerHTML = marked(contents[i]);
-  //         break;
-  //     }
-  //   }
-  //   if (contents[i] instanceof Text) renderText(contents[i]);
-  //   if (contents[i] instanceof Attribute) renderAttribute(contents[i], command.presentationMode);
-  //   if (contents[i] instanceof List) renderList(contents[i], command.theme);
-  //   if (contents[i] instanceof Command) renderCommand(contents[i]);
-  // }
-
-  // function getEleName() {
-  //   onsen2Interface.eleCount = onsen2Interface.eleCount || 1;
-  //   return 'e' + (onsen2Interface.eleCount++);
-  // }
-
   /**
    * function to render contents
    */
   function renderContents() {
-    console.log('renderContents');
     var i, j, indent = false;
     var onsList = addEle(document.getElementById('pc' + panel.id), 'ons-list');
     var contents = command.contents.get('contents');
     var uniqueID;
     var buttonDiv; // This will group contiguous commands
+    var ele = null;
     for (i = 0; i < contents.length; i++) {
       // first if not button reset container for them
       if (!(ele instanceof Command)) buttonDiv = undefined;
       uniqueID = 'id' + panel.id + '_' + i;
-      var ele = contents[i];
+      ele = contents[i];
       if (typeof ele == 'string')
         renderString(onsList, ele);
       else if (ele instanceof Text)
@@ -427,17 +366,8 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
 
     function renderText(onsList, text) {
       var listItem = addEle(addEle(onsList, 'ons-list-item'), 'div', 'card__content');
-      //<div class="center list-item__center"><p><strong>firstName</strong> John</p>
-      // <p><strong>lastName</strong> Doe</p>
-      // <p><strong>birthDate</strong> Sat Jun 22 2019 10:54:37 GMT-0400 (Eastern Daylight Time)</p>
-      // <p><strong>drink</strong> null</p>
-      // <p><strong>sex</strong> true</p>
-      // <p><strong>drugs</strong> false</p>
-      // <p><strong>IQ</strong> 1</p>
-      // </div>
       listItem.innerHTML = marked(text.get());
       text.onEvent('StateChange', function () {
-        console.log('poop');
         listItem.innerHTML = marked(text.get());
       });
       panel.textListeners.push(text); // so we can avoid leakage on deleting panel
@@ -473,7 +403,6 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
             centerContainer.innerHTML = '<ons-switch ' + (mode === 'Edit' ? '' : 'disabled') + ' checked="true"></ons-switch>';
           else
             centerContainer.innerHTML = '<ons-switch ' + (mode === 'Edit' ? '' : 'disabled') + '></ons-switch>';
-          //attribute.value
           break;
         case 'EditString':
           listItem = addEle(onsList, 'ons-list-item', 'input-items');
@@ -494,23 +423,20 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
             button = addEle(rightContainer, 'ons-toolbar-button');
             button.innerHTML = '<ons-icon icon="fa-caret-down"></ons-icon>';
             button.addEventListener('click', function (event) {
-
               daList = [];
               daItems = attribute.quickPick;
               for (j = 0; j < daItems.length; j++) {
                 daList.push(daItems[j]);
               }
               daList.push({label: 'Cancel', icon: 'md-close'});
-
               ons.openActionSheet({
                 title: attribute.label,
                 cancelable: true,
                 buttons: daList
               }).then(function (index) {
                 if (index < daItems.length)
-                input.value = daItems[index];
+                  input.value = daItems[index];
               });
-
             });
           }
           break;
@@ -551,6 +477,45 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
           centerContainer = addEle(listItem, 'label', 'center');
           centerContainer.innerHTML = 'default: ' + mode + attribute.type;
       }
+
+      /**
+       * Monitor state changes to attribute
+       */
+      attribute.onEvent('Validate', function () {
+        attribute._validationDone = true;
+      });
+      attribute.onEvent('StateChange', function () {
+        switch (mode + attribute.type) {
+          case 'EditBoolean':
+          case 'ViewBoolean':
+            if (attribute.value)
+              centerContainer.innerHTML = '<ons-switch ' + (mode === 'Edit' ? '' : 'disabled') + ' checked="true"></ons-switch>';
+            else
+              centerContainer.innerHTML = '<ons-switch ' + (mode === 'Edit' ? '' : 'disabled') + '></ons-switch>';
+            break;
+          case 'EditDate':
+            input.value = attribute.value;
+            // var xxx = attribute.value ? '' + (1 + attribute.value.getMonth()) + '/' + attribute.value.getDate() + '/' + attribute.value.getFullYear() : '';
+            // input.value = xxx;
+            break;
+          case 'EditNumber':
+            input.value = attribute.value ? attribute.value : 0;
+            break;
+          case 'EditString':
+            input.value = attribute.value ? '' + attribute.value : '';
+            break;
+          case 'ViewDate':
+            centerContainer.innerHTML = attribute.value ? '' + (1 + attribute.value.getMonth()) + '/' + attribute.value.getDate() + '/' + attribute.value.getFullYear() : '';
+            break;
+          default: // View String
+            centerContainer.innerHTML = attribute.value;
+            break;
+        }
+
+        // renderHelpText(attribute._validationDone ? attribute.validationMessage : '');
+        // attribute._validationDone = false;
+      });
+      panel.attributeListeners.push(attribute); // so we can avoid leakage on deleting panel
     }
 
     function renderList(onsList, list, theme) {
@@ -624,24 +589,26 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
     function renderCommand(onsList, command) {
       var section;
       if (!buttonDiv) { // If no button container create
-        section = addEle(onsList, 'section', undefined, {style: "padding: 16px"});
-        buttonDiv = addEle(section, 'div', undefined, {style: "text-align:left"});
+        indent = false;
+        if (indent) {
+          section  = addEle(onsList, 'ons-list-item', 'input-items');
+          // section = addEle(onsList, 'section', undefined, {style: "padding: 16px"});
+          buttonDiv = addEle(section, 'div', 'right');
+        } else {
+          section = addEle(onsList, 'section', undefined, {style: "padding: 16px"});
+          buttonDiv = addEle(section, 'div', undefined, {style: "text-align:left"});
+        }
+
       }
-      //getEleName()
       var button = addEle(buttonDiv, 'ons-button', undefined, {
         id: uniqueID,
+        modifier: 'large',
         style: "margin: 8px;fixed-width: 100px"
-        // onclick: "alert('This button sucks');"
       });
       button.innerText = command.name;
-
-      // var listItem = addEle(onsList, 'ons-list-item');
-      // listItem.innerHTML = ' renderCommand: ' + command;
-
       button.addEventListener('click', function (event) {
         onsen2Interface.dispatch(new Request({type: 'Command', command: command}));
       });
-
       return;
       {
         if (!panel.buttonDiv) {
