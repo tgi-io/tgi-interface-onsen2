@@ -125,6 +125,7 @@ attributePresentation.set('contents', [
       firstName.set('George');
       lastName.set('Washington');
       birthday.set(birthday.coerce('2/22/1732'));
+      drink.set('idk ???');
       iq.set(100);
       sex.set(false);
       drugs.set(true);

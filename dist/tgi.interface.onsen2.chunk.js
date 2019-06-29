@@ -495,8 +495,7 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
             break;
           case 'EditDate':
             input.value = attribute.value;
-            // var xxx = attribute.value ? '' + (1 + attribute.value.getMonth()) + '/' + attribute.value.getDate() + '/' + attribute.value.getFullYear() : '';
-            // input.value = xxx;
+
             break;
           case 'EditNumber':
             input.value = attribute.value ? attribute.value : 0;
@@ -512,8 +511,6 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
             break;
         }
 
-        // renderHelpText(attribute._validationDone ? attribute.validationMessage : '');
-        // attribute._validationDone = false;
       });
       panel.attributeListeners.push(attribute); // so we can avoid leakage on deleting panel
     }

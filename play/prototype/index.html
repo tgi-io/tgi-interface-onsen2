@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="prototype.css">
   <script src="/dist/onsenui/js/onsenui.js"></script>
   <script src="prototype.js"></script>
-
 </head>
 <body>
 <template id="home.html">
@@ -144,10 +143,10 @@
         </label>
 
         <div class="right right-label list-item__right">
-          <ons-toolbar-button >
+          <ons-toolbar-button>
             <ons-icon icon="fa-caret-down"></ons-icon>
           </ons-toolbar-button>
-<!--          <ons-icon class="right-icon ons-icon fa-hand-spock-o fa ons-icon&#45;&#45;lg" data-v-e670b180="" icon="fa-hand-spock-o" size="lg"></ons-icon>-->
+          <!--          <ons-icon class="right-icon ons-icon fa-hand-spock-o fa ons-icon&#45;&#45;lg" data-v-e670b180="" icon="fa-hand-spock-o" size="lg"></ons-icon>-->
         </div>
       </ons-list-item>
 
@@ -220,6 +219,258 @@
     This is the about page.
   </ons-page>
 </template>
+<template id="cards.html">
+  <ons-page id="cards">
+    <ons-toolbar>
+      <div class="left">
+        <!--<ons-back-button></ons-back-button>-->
+        <ons-toolbar-button onclick="openMenu()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">About</div>
+    </ons-toolbar>
+
+
+
+
+    <ons-card>
+      <div class="content">
+        <ons-list modifier="noborder">
+          <ons-list-header class="list-card-header">
+            <ons-row>
+              <ons-col class="list-card-col" align="right" width="25%"><b>Full Name</b></ons-col>
+              <ons-col width="2.5%"></ons-col>
+              <ons-col class="list-card-col">Sean Thomas Smith</ons-col>
+            </ons-row>
+          </ons-list-header>
+          <ons-list-item modifier="nodivider" style="padding: 0;height:24px; min-height: 24px">
+            <ons-row>
+              <ons-col align="right" width="25%"><b>Age</b></ons-col>
+              <ons-col width="2.5%"></ons-col>
+              <ons-col>25</ons-col>
+            </ons-row>
+          </ons-list-item>
+          <ons-list-item modifier="nodivider" style="padding: 0;height:24px; min-height: 24px">
+            <ons-row>
+              <ons-col align="right" width="25%"><b>Address</b></ons-col>
+              <ons-col width="2.5%"></ons-col>
+              <ons-col>1122 Boogy Woogy Avenue</ons-col>
+            </ons-row>
+          </ons-list-item>
+          <ons-list-item modifier="nodivider" style="padding: 0;height:24px; min-height: 24px">
+            <ons-row>
+              <ons-col align="right" width="25%"><b>City</b></ons-col>
+              <ons-col width="2.5%"></ons-col>
+              <ons-col>Point Pleasant Beach</ons-col>
+            </ons-row>
+          </ons-list-item>
+          <ons-list-item modifier="nodivider" style="padding: 0;height:24px; min-height: 24px">
+            <ons-row>
+              <ons-col align="right" width="25%"><b>State</b></ons-col>
+              <ons-col width="2.5%"></ons-col>
+              <ons-col>NJ</ons-col>
+            </ons-row>
+          </ons-list-item>
+          <ons-list-item style="padding: 0;height:12px; min-height: 12px">
+          </ons-list-item>
+        </ons-list>
+      </div>
+    </ons-card>
+
+    <ons-card>
+      <div class="content">
+        <ons-list modifier="noborder">
+          <ons-list-header class="list-card-header">
+            <ons-row>
+              <ons-col class="list-card-col" align="right" width="25%"><b>Name asd asd asd asdasd asd asd </b></ons-col>
+              <ons-col width="2.5%"></ons-col>
+              <ons-col class="list-card-col">Sean Thomas Smith Sean Thomas Smith Sean Thomas Smith Sean Thomas Smith </ons-col>
+            </ons-row>
+          </ons-list-header>
+          <ons-list-item modifier="nodivider" style="padding: 0;height:24px; min-height: 24px">
+            <ons-row>
+              <ons-col align="right" width="25%"><b>Age</b></ons-col>
+              <ons-col width="2.5%"></ons-col>
+              <ons-col>25</ons-col>
+            </ons-row>
+          </ons-list-item>
+          <ons-list-item modifier="nodivider" style="padding: 0;height:24px; min-height: 24px">
+            <ons-row>
+              <ons-col align="right" width="25%"><b>Address</b></ons-col>
+              <ons-col width="2.5%"></ons-col>
+              <ons-col>1122 Boogy Woogy Avenue</ons-col>
+            </ons-row>
+          </ons-list-item>
+          <ons-list-item modifier="nodivider" style="padding: 0;height:24px; min-height: 24px">
+            <ons-row>
+              <ons-col align="right" width="25%"><b>City</b></ons-col>
+              <ons-col width="2.5%"></ons-col>
+              <ons-col>Point Pleasant Beach</ons-col>
+            </ons-row>
+          </ons-list-item>
+          <ons-list-item modifier="nodivider" style="padding: 0;height:24px; min-height: 24px">
+            <ons-row>
+              <ons-col align="right" width="25%"><b>State</b></ons-col>
+              <ons-col width="2.5%"></ons-col>
+              <ons-col>NJ</ons-col>
+            </ons-row>
+          </ons-list-item>
+          <ons-list-item style="padding: 0;height:12px; min-height: 12px">
+          </ons-list-item>
+        </ons-list>
+      </div>
+    </ons-card>
+
+
+
+
+
+    <!--    <ons-card>-->
+<!--      <div class="content">-->
+<!--        <ons-list-item>-->
+<!--          <ons-row>-->
+<!--            <ons-col align="right" width="25%"><b>Full Name</b></ons-col>-->
+<!--            <ons-col>Sean Thomas Smith</ons-col>-->
+<!--          </ons-row>-->
+<!--        </ons-list-item>-->
+<!--        <ons-list-item>-->
+<!--          <ons-row>-->
+<!--            <ons-col align="right" width="25%"><b>Age</b></ons-col>-->
+<!--            <ons-col>25</ons-col>-->
+<!--          </ons-row>-->
+<!--        </ons-list-item>-->
+<!--        <ons-list-item>-->
+<!--          <ons-row>-->
+<!--            <ons-col align="right" width="25%"><b>Address</b></ons-col>-->
+<!--            <ons-col>1122 Boogy Woogy Avenue</ons-col>-->
+<!--          </ons-row>-->
+<!--        </ons-list-item>-->
+<!--        <ons-list-item>-->
+<!--          <ons-row>-->
+<!--            <ons-col align="right" width="25%"><b>City</b></ons-col>-->
+<!--            <ons-col>Point Pleasant Beach</ons-col>-->
+<!--          </ons-row>-->
+<!--        </ons-list-item>-->
+<!--        <ons-list-item>-->
+<!--          <ons-row>-->
+<!--            <ons-col align="right" width="25%"><b>State</b></ons-col>-->
+<!--            <ons-col>NJ</ons-col>-->
+<!--          </ons-row>-->
+<!--        </ons-list-item>-->
+<!--      </div>-->
+<!--    </ons-card>-->
+
+
+    <!--    <ons-card>-->
+    <!--      <ons-list modifier="noborder">-->
+    <!--        <ons-list-item modifier="nodivider" expandable>-->
+    <!--          <b>Name&nbsp;</b>Thomas Jefferson-->
+    <!--          <div class="expandable-content">-->
+    <!--            <p style="margin-top: 0"><b>Address&nbsp;</b>99 Problems ave</p>-->
+    <!--            <p><b>City&nbsp;</b>By the Sea</p>-->
+    <!--            <p><b>Age&nbsp;</b>123</p>-->
+    <!--          </div>-->
+    <!--        </ons-list-item>-->
+    <!--      </ons-list>-->
+    <!--    </ons-card>-->
+
+    <!--    <ons-card>-->
+    <!--      <ons-list modifier="noborder">-->
+    <!--        <ons-list-item modifier="nodivider">eeek</ons-list-item>-->
+    <!--        <ons-list-item modifier="nodivider">eeek</ons-list-item>-->
+    <!--        <ons-list-item modifier="nodivider">eeek</ons-list-item>-->
+    <!--        <ons-list-item modifier="nodivider">-->
+    <!--          <ons-row<ons-row vertical-align="bottom">-->
+    <!--            <ons-col align="right" width="25%">Full Name</ons-col>-->
+    <!--            <ons-col>Sean Thomas Smith</ons-col>-->
+    <!--          </ons-row>-->
+    <!--        </ons-list-item>-->
+    <!--        <ons-list-item>-->
+    <!--          <ons-row<ons-row vertical-align="bottom">-->
+    <!--            <ons-col align="right" width="25%"><b>Age</b></ons-col>-->
+    <!--            <ons-col>25</ons-col>-->
+    <!--          </ons-row>-->
+    <!--        </ons-list-item>-->
+    <!--        <ons-list-item>-->
+    <!--          <ons-row>-->
+    <!--            <ons-col align="right" width="25%"><b>Address</b></ons-col>-->
+    <!--            <ons-col>1122 Boogy Woogy Avenue</ons-col>-->
+    <!--          </ons-row>-->
+    <!--        </ons-list-item>-->
+    <!--        <ons-list-item>-->
+    <!--          <ons-row>-->
+    <!--            <ons-col align="right" width="25%"><b>City</b></ons-col>-->
+    <!--            <ons-col>Point Pleasant Beach</ons-col>-->
+    <!--          </ons-row>-->
+    <!--        </ons-list-item>-->
+    <!--        <ons-list-item>-->
+    <!--          <ons-row>-->
+    <!--            <ons-col align="right" width="25%">State</ons-col>-->
+    <!--            <ons-col>NJ</ons-col>-->
+    <!--          </ons-row>-->
+    <!--        </ons-list-item>-->
+    <!--      </ons-list>-->
+    <!--    </ons-card>-->
+    <!--    <ons-card>-->
+    <!--      <div class="content">-->
+    <!--        <ons-list>-->
+    <!--          <ons-list-item>-->
+    <!--            <div class="left">-->
+    <!--              <img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">-->
+    <!--            </div>-->
+    <!--            <div class="center">-->
+    <!--              <span class="list-item__title">Cutest kitty</span>-->
+    <!--              <span class="list-item__subtitle">On the Internet</span>-->
+    <!--            </div>-->
+    <!--          </ons-list-item>-->
+    <!--        </ons-list>-->
+    <!--      </div>-->
+    <!--    </ons-card>-->
+    <!--    <ons-card>-->
+    <!--      <div class="content">-->
+    <!--        <ons-list>-->
+    <!--          <ons-list-header>Name</ons-list-header>-->
+    <!--          <ons-list-item>John Doe</ons-list-item>-->
+    <!--          <ons-list-header>Age</ons-list-header>-->
+    <!--          <ons-list-item>25</ons-list-item>-->
+    <!--        </ons-list>-->
+    <!--      </div>-->
+    <!--    </ons-card>-->
+    <!--    <ons-card>-->
+    <!--      <div class="content">-->
+    <!--        <ons-list>-->
+    <!--          <div class="top list-item__top">-->
+    <!--            <div class="left list-item__left">Left content</div>-->
+    <!--            <div class="center list-item__center">Center content</div>-->
+    <!--            <div class="right list-item__right">Right content</div>-->
+    <!--          </div>-->
+    <!--          <div class="expandable-content list-item__expandable-content">Expandable content</div>-->
+    <!--        </ons-list>-->
+    <!--      </div>-->
+    <!--    </ons-card>-->
+    <!--    <ons-card>-->
+    <!--      <div class="content">-->
+    <!--        <ons-list-item modifier="nodivider"><b>Name&nbsp;</b>John Doe</ons-list-item>-->
+    <!--        <ons-list-item modifier="nodivider"><b>Age&nbsp;</b>25</ons-list-item>-->
+    <!--      </div>-->
+    <!--    </ons-card>-->
+    <!--    <ons-card>-->
+    <!--      <div class="content">-->
+    <!--        <ons-list-item modifier="nodivider"><b>Name&nbsp;</b>John Doe</ons-list-item>-->
+    <!--        <ons-list-item modifier="nodivider"><b>Age&nbsp;</b>25</ons-list-item>-->
+    <!--      </div>-->
+    <!--    </ons-card>-->
+    <!--    <ons-card>-->
+    <!--      <div class="content">-->
+    <!--        <ons-list>-->
+    <!--          <ons-list-item><b>Name&nbsp;</b>John Doe</ons-list-item>-->
+    <!--          <ons-list-item><b>Age&nbsp;</b>25</ons-list-item>-->
+    <!--        </ons-list>-->
+    <!--      </div>-->
+    <!--    </ons-card>-->
+  </ons-page>
+</template>
 <ons-splitter>
   <!-- The side menu -->
   <ons-splitter-side id="menu" swipeable collapse width="220px">
@@ -277,6 +528,14 @@
             </ons-list-item>
           </div>
         </ons-list-item>
+        <ons-list-item onclick="loadPage('cards.html')">
+          <div class="left">
+            <ons-icon fixed-width class="list-item__icon" icon="fa-table" size="16px"></ons-icon>
+          </div>
+          <div class="center">
+            Cards
+          </div>
+        </ons-list-item>
         <ons-list-item onclick="loadPage('about.html')">
           <div class="left">
             <ons-icon fixed-width class="list-item__icon" icon="fa-table" size="16px"></ons-icon>
@@ -294,7 +553,7 @@
 </ons-splitter>
 </body>
 <script>
-  document.querySelector('#navigator').resetToPage('form.html');
+  document.querySelector('#navigator').resetToPage('cards.html');
   // document.querySelector('#menu').open();
 </script>
 <script>
