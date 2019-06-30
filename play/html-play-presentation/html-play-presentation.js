@@ -343,14 +343,7 @@ nav.set('contents', [
 app.start(function (request) {
   app.info('app got ' + request);
 });
-// new tgi.Command({
-//   name: 'list',
-//   type: 'Presentation',
-//   theme: 'info',
-//   icon: 'fa-table',
-//   contents: listPresentation
-// }).execute(ui);
 
 setTimeout(function () {
-  attributeCommand.execute(ui);
+  commandDefaultList.execute(ui);
 }, 250);
