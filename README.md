@@ -2,10 +2,10 @@
 
 todo
 ---
-- lists with cards
 - validation
 - edit is not saving when switching to view
 - hide indent but document here
+- add icons where it fits
 
 todo later
 ---

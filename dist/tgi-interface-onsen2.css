@@ -1,0 +1,12 @@
+.list-card-col {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.list-card-header {
+    padding: 0;
+    height: 24px;
+    min-height: 24px;
+    white-space: nowrap
+}

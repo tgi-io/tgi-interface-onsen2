@@ -173,13 +173,19 @@ var Actor = function (args) {
   this.modelType = "Actor";
   this.attributes.push(new tgi.Attribute('Name'));
   this.attributes.push(new tgi.Attribute('Born', 'Number'));
-  this.attributes.push(new tgi.Attribute({name:'Today', type:'Date', hidden:'*'}));
+  // this.attributes.push(new tgi.Attribute({name:'Today', type:'Date', hidden:'*'}));
+  this.attributes.push(new tgi.Attribute({name:'Today', type:'Date'}));
   this.attributes.push(new tgi.Attribute('Sex'));
   this.attributes.push(new tgi.Attribute('Joystick','Boolean'));
 };
 Actor.prototype = Object.create(tgi.Model.prototype);
 var actor = new Actor();
 var actors = new tgi.List(actor);
+
+actors.pickKludge = function (id) {
+  app.info('you picked ' + id);
+};
+
 var actorsInfo = [
   // Actor              Born  Male
   ['Jack Nicholson', 1937, 'male'],
