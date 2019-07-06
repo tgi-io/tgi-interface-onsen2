@@ -21,6 +21,11 @@
           <ons-icon icon="md-menu"></ons-icon>
         </ons-toolbar-button>
       </div>
+      <div class="right">
+        <ons-toolbar-button onclick="openRightMenu()">
+          <ons-icon icon="fa-user"></ons-icon>
+        </ons-toolbar-button>
+      </div>
       <div class="center">Home</div>
     </ons-toolbar>
     <p style="text-align: center; opacity: 0.6; padding: 20px;">
@@ -228,7 +233,7 @@
           <ons-icon icon="md-menu"></ons-icon>
         </ons-toolbar-button>
       </div>
-      <div class="center">About</div>
+      <div class="center">Cards</div>
     </ons-toolbar>
 
 
@@ -576,13 +581,29 @@
       </ons-list>
     </ons-page>
   </ons-splitter-side>
+  <ons-splitter-side id="rightMenu" side="right" collapse width="220px">
+    <ons-page>
+      <ons-list>
+
+        <ons-list-item onclick="loadPage('about.html')">
+          <div class="left">
+            <ons-icon fixed-width class="list-item__icon" icon="fa-table" size="16px"></ons-icon>
+          </div>
+          <div class="center">
+            About
+          </div>
+        </ons-list-item>
+
+      </ons-list>
+    </ons-page>
+  </ons-splitter-side>
   <!-- Everything not in the side menu -->
   <ons-navigator id="navigator">
   </ons-navigator>
 </ons-splitter>
 </body>
 <script>
-  document.querySelector('#navigator').resetToPage('cards.html');
+  document.querySelector('#navigator').resetToPage('home.html');
   // document.querySelector('#menu').open();
 </script>
 <script>

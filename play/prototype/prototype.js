@@ -5,8 +5,13 @@ const openMenu = () => {
   document.querySelector('#menu').open();
 };
 
+const openRightMenu = () => {
+  document.querySelector('#rightMenu').open();
+};
+
 const loadPage = (page) => {
   document.querySelector('#menu').close();
+  document.querySelector('#rightMenu').close();
   // document.querySelector('#navigator').bringPageTop(page, { animation: 'fade' });
   document.querySelector('#navigator').resetToPage(page);
 };

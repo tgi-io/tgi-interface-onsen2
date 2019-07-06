@@ -1,27 +1,51 @@
 {
+  "_args": [
+    [
+      {
+        "raw": "onsenui@*",
+        "scope": null,
+        "escapedName": "onsenui",
+        "name": "onsenui",
+        "rawSpec": "*",
+        "spec": "*",
+        "type": "range"
+      },
+      "/Users/seansmith/repos/seanTsmith/tgi-interface-onsen2"
+    ]
+  ],
   "_from": "onsenui@*",
+  "_hasShrinkwrap": false,
   "_id": "onsenui@2.10.8",
-  "_inBundle": false,
-  "_integrity": "sha512-4qVrn8de4CfmX9qdXApYoW3wqdn5K1lEotXzS7S8+L7mEl/hAWZaIXWU/WaxU3rJPCb560uVUXqGGOgEMfF4fA==",
+  "_inCache": true,
   "_location": "/onsenui",
+  "_nodeVersion": "10.14.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/onsenui_2.10.8_1554108252393_0.8804340866888254"
+  },
+  "_npmUser": {
+    "name": "emccorson",
+    "email": "eric@asial.co.jp"
+  },
+  "_npmVersion": "6.5.0",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
-    "registry": true,
     "raw": "onsenui@*",
-    "name": "onsenui",
+    "scope": null,
     "escapedName": "onsenui",
+    "name": "onsenui",
     "rawSpec": "*",
-    "saveSpec": null,
-    "fetchSpec": "*"
+    "spec": "*",
+    "type": "range"
   },
   "_requiredBy": [
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/onsenui/-/onsenui-2.10.8.tgz",
   "_shasum": "dde8202b9b3c926426a443b7bcd74cb2b9e69557",
+  "_shrinkwrap": null,
   "_spec": "onsenui@*",
-  "_where": "/Users/sean/repos/seanTsmith/tgi-interface-onsen2",
+  "_where": "/Users/seansmith/repos/seanTsmith/tgi-interface-onsen2",
   "babel": {
     "presets": [
       [
@@ -46,14 +70,12 @@
   "bugs": {
     "url": "https://github.com/OnsenUI/OnsenUI/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "@onsenui/custom-elements": "1.0.0",
     "@onsenui/fastclick": "1.1.1",
     "core-js": "^2.5.1",
     "gulp-protractor": "^4.1.1"
   },
-  "deprecated": false,
   "description": "HTML5 Mobile Framework & UI Components",
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -116,16 +138,19 @@
     "wdio-jasmine-framework": "^0.3.8",
     "webdriverio": "^4.4.0"
   },
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-4qVrn8de4CfmX9qdXApYoW3wqdn5K1lEotXzS7S8+L7mEl/hAWZaIXWU/WaxU3rJPCb560uVUXqGGOgEMfF4fA==",
+    "shasum": "dde8202b9b3c926426a443b7bcd74cb2b9e69557",
+    "tarball": "https://registry.npmjs.org/onsenui/-/onsenui-2.10.8.tgz",
+    "fileCount": 246,
+    "unpackedSize": 11564384,
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJcoc9dCRA9TVsSAnZWagAAXiAP/2neDKLfUFxo1qWLomdB\niz8uwf7JfF/HfUn326SddN37T3NANvoRZpZ/W4IGPe6Z9ZpDCcizHpdS1jbf\nsny3pSHKBi+lPCWr/UljaqBL9phNHZqqhdPOTwVScO32+pxQdTfiQ6TNJvYo\nwPU8psgDPj6txECwImJ4hTwWBJYoVfCaSXhx9bEBPkPnH2/2WTHJifSVVutg\nHT/62Zb+pzSc3sId+DCcMAkZ8sYX0qiqAV2BiBLs3+tXu5DcX63RTUUlCH/8\nMNtxARHuRSOlMolcStNw/ytEV/eNQYngEqT3K+LcmulU0w53zme+epbnGag8\n7JtFytGcuf4aeUAtuTk8/ng2v0YQoCUU4m+YQG7uIeE9T0AD8jiy7PRNJfbD\ntzSDrMdPGlp356pGzARgHFzNeTSZTnjaxAVWxKq2T95NPs2/qQp4zwY20zki\na8xbbpdpInW+r2gAcsA8SnbdTqropv5WDTAYx45fk9mi7/a9ifVI3tG7SxGq\nm4PT/VsbqRCeZvK1mscy5/VpIob5X0xLtvGW2d0T9YjlmHfn2DdeuQet1+bX\n2e9Ic0WvZplcb6jjrxhsuLXwC8zQxkf2UokTLCZAKX65us64cfKzeMPQwnnn\n6oOxnNkFrxM2OoKua/YhzUpXct4fBrjHziIGvyO19Wt9CI5SqQmHj7BdI4B4\n+YfN\r\n=bz3Q\r\n-----END PGP SIGNATURE-----\r\n"
+  },
   "engines": {
     "node": ">= 4.0.0"
   },
-  "files": [
-    "bower.json",
-    "css",
-    "css-components-src",
-    "js",
-    "esm"
-  ],
+  "gitHead": "6913dffb0f0bbb235422007f1ed5fb8096599bbd",
   "homepage": "https://onsen.io/",
   "keywords": [
     "phonegap",
@@ -144,8 +169,36 @@
   ],
   "license": "Apache-2.0",
   "main": "js/onsenui.js",
+  "maintainers": [
+    {
+      "name": "asial-matagawa",
+      "email": "naoki.m@asial.co.jp"
+    },
+    {
+      "name": "asialgearoid",
+      "email": "gearoid@asial.co.jp"
+    },
+    {
+      "name": "emccorson",
+      "email": "eric@asial.co.jp"
+    },
+    {
+      "name": "knight9999",
+      "email": "knaito@asial.co.jp"
+    },
+    {
+      "name": "masahirotanaka",
+      "email": "masahiro@asial.co.jp"
+    },
+    {
+      "name": "onsenui-user",
+      "email": "onsenui@gmail.com"
+    }
+  ],
   "name": "onsenui",
+  "optionalDependencies": {},
   "private": false,
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/OnsenUI/OnsenUI.git"

@@ -567,6 +567,11 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
             var dCol1 = '<ons-col class="list-card-col" align="right" width="25%"><b>' + dAttribute.label + '</b></ons-col>';
             var dCol2 = '<ons-col width="2.5%"></ons-col>';
             var dCol3 = '<ons-col class="list-card-col">' + dText + '</ons-col>';
+            if (j===1) {
+              dCol3 = '<ons-col class="list-card-col1st">' + dText + '</ons-col>';
+            }
+
+
             dRow.innerHTML = dCol1 + dCol2 + dCol3;
 
 
