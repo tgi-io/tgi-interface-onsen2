@@ -15,51 +15,21 @@
   <script src="/dist/tgi-interface-onsen2.js"></script>
 </head>
 <body>
+
 <template id="loading.html">
   <ons-page id="loader">
     <ons-toolbar id="loader-toolbar">
-      <div class="left">
-        <ons-toolbar-button onclick="document.querySelector('#menu').open()">
-          <ons-icon icon="md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
+<!--      <div class="left">-->
+<!--        <ons-toolbar-button onclick="document.querySelector('#menuLeft').open()">-->
+<!--          <ons-icon icon="md-menu"></ons-icon>-->
+<!--        </ons-toolbar-button>-->
+<!--      </div>-->
       <div class="center" style="opacity: 0.6">Loading...</div>
     </ons-toolbar>
     <ons-progress-bar indeterminate></ons-progress-bar>
   </ons-page>
 </template>
-<template id="home.html">
-  <ons-page id="home">
-    <ons-toolbar id="home-toolbar">
-      <div class="left">
-        <ons-toolbar-button onclick="document.querySelector('#menu').open()">
-          <ons-icon icon="md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
-      <div class="center">Home</div>
-    </ons-toolbar>
-    <div id="homeid"></div>
-    <p style="text-align: center; opacity: 0.6; padding: 20px;">
-      This is the home page.
-    </p>
-  </ons-page>
-</template>
-<template id="test.html">
-  <ons-page id="test">
-    <ons-toolbar id="test-toolbar">
-      <div class="left">
-        <ons-toolbar-button onclick="document.querySelector('#menu').open()">
-          <ons-icon icon="md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
-      <div class="center">Test</div>
-    </ons-toolbar>
-    <div id="testid"></div>
-    <p style="text-align: center; opacity: 0.6; padding: 20px;">
-      test test test test test test test test test test
-    </p>
-  </ons-page>
-</template>
+
 <script type="text/javascript" src="html-play-presentation.js"></script>
 <script>document.querySelector('#navigator').resetToPage('loading.html');</script>
 </body>

@@ -17,9 +17,9 @@ var themes = ['default', 'primary', 'success', 'info', 'warning', 'danger'];
  * Default (Minimal) Presentation
  */
 var defaultPresentation = new tgi.Presentation();
-defaultPresentation.set('contents', ['i got nothin']);
+defaultPresentation.set('contents', ['swipe or click that menu thing']);
 var defaultCommand = new tgi.Command({
-  name: 'Default',
+  name: 'Default Presentation',
   type: 'Presentation',
   contents: defaultPresentation
 });
@@ -351,5 +351,5 @@ app.start(function (request) {
 });
 
 setTimeout(function () {
-  commandDefaultList.execute(ui);
+  defaultCommand.execute(ui);
 }, 250);

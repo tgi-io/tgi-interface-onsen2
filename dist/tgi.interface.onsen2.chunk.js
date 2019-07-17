@@ -130,10 +130,14 @@ Onsen2Interface.prototype.htmlNavigation = function () {
   var onsen2Interface = this;
   onsen2Interface.navCommands = [];
   const addEle = Onsen2Interface.addEle;
-  this.doc.sideMenu = addEle(this.doc.mainContainer, 'ons-splitter-side', undefined,
-    {id: 'menu', swipeable: '', collapse: '', width: '220px'});
-  this.doc.ssPage = addEle(this.doc.sideMenu, 'ons-page');
-  this.doc.ssList = addEle(this.doc.ssPage, 'ons-list');
+
+  this.doc.sideMenuLeft = addEle(this.doc.mainContainer, 'ons-splitter-side', undefined, {id: 'menuLeft', swipeable: '', collapse: '', width: '220px'});
+  this.doc.ssPageLeft = addEle(this.doc.sideMenuLeft, 'ons-page');
+  this.doc.ssListLeft = addEle(this.doc.ssPageLeft, 'ons-list');
+
+  this.doc.sideMenuRight = addEle(this.doc.mainContainer, 'ons-splitter-side', undefined, {id: 'menuRight', swipeable: '', collapse: '', side: 'right', width: '220px'});
+  this.doc.ssPageRight = addEle(this.doc.sideMenuRight, 'ons-page');
+  this.doc.ssListRight = addEle(this.doc.ssPageRight, 'ons-list');
 
   this.doc.ssNav = addEle(this.doc.mainContainer, 'ons-navigator', undefined, {id: 'navigator'});
   this.doc.ssNavPage = addEle(this.doc.ssNav, 'ons-page');
@@ -142,26 +146,32 @@ Onsen2Interface.prototype.htmlNavigation = function () {
 Onsen2Interface.prototype.refreshNavigation = function () {
   const addEle = Onsen2Interface.addEle;
 
-  this.doc.ssList.innerHTML = ''; // remove any child nodes
+  this.doc.ssListLeft.innerHTML = '';
+  this.doc.ssListRight.innerHTML = '';
+
   const menuContents = this.presentation.get('contents');
   var separatorSeen = false;
+
   for (var menuItem in menuContents) {
     if (menuContents.hasOwnProperty(menuItem)) {
       if (menuContents[menuItem].type === 'Menu') {
-        var parentMenu = this.addNavBarListMenu(this.doc.ssList, menuContents[menuItem]);
+        var parentMenu = this.addNavBarListMenu(this.doc.ssListLeft, menuContents[menuItem]);
         var subMenu = menuContents[menuItem].contents;
         for (var subPres in subMenu)
           if (subMenu.hasOwnProperty(subPres))
             this.addNavBarListItem(parentMenu, subMenu[subPres]);
       } else {
-        if (menuContents[menuItem] === '-')
-          addEle(this.doc.ssList, 'HR'); // todo make menu on right
-        else
-          this.addNavigationItem(this.doc.ssList, menuContents[menuItem]);
-        // if (menuContents[menuItem] === '-')
-        //   separatorSeen = true;
-        // else
-        //   this.addNavigationItem((separatorSeen ? this.doc.navBarRight : this.doc.navBarLeft), menuContents[menuItem]);
+        if (menuContents[menuItem] === '-') {
+          separatorSeen = true;
+          console.log('separatorSeen = true;');
+        } else {
+          if (separatorSeen) {
+            this.addNavigationItem(this.doc.ssListRight, menuContents[menuItem]);
+          }
+
+          else
+            this.addNavigationItem(this.doc.ssListLeft, menuContents[menuItem]);
+        }
       }
     }
   }
@@ -172,7 +182,7 @@ Onsen2Interface.prototype.addNavigationItem = function (parent, action) {
   // console.log('addNavigationItem ' + navIndex);
 
   const addEle = Onsen2Interface.addEle;
-  var ssListItem = addEle(this.doc.ssList, 'ons-list-item', undefined, {
+  var ssListItem = addEle(parent, 'ons-list-item', undefined, {
     modifier: "nodivider",
     onclick: "app.primaryInterface.nav(" + navIndex + ")"
   });
@@ -204,7 +214,7 @@ Onsen2Interface.prototype.addNavBarListItem = function (parent, action) {
 };
 Onsen2Interface.prototype.addNavBarListMenu = function (parent, action) {
   const addEle = Onsen2Interface.addEle;
-  var ssListItem = addEle(this.doc.ssList, 'ons-list-item', undefined, {expandable: '', modifier: "nodivider"});
+  var ssListItem = addEle(this.doc.ssListLeft, 'ons-list-item', undefined, {expandable: '', modifier: "nodivider"});
   var icon = '<ons-icon style="opacity: 0.25" fixed-width class="list-item__icon" icon="fa-bars" size="16px"></ons-icon>';
   if (action.icon && left(action.icon, 2) === 'fa')
     icon = '<ons-icon fixed-width class="list-item__icon" icon="' + action.icon + '"' + ' size="16px"></ons-icon>';
@@ -219,7 +229,7 @@ Onsen2Interface.prototype.nav = function (index) {
 };
 Onsen2Interface.prototype.navIndex = function (action) {
   var onsen2Interface = this;
-  var index = onsen2Interface.navCommands.push(action)-1;
+  var index = onsen2Interface.navCommands.push(action) - 1;
   // console.log('Onsen2Interface.prototype.navIndex: ' + index + ' - ' + action.name);
   return index;
 };
@@ -289,8 +299,9 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
     panel.template.id = 'panel' + panel.id + '.html';
     panel.template.innerHTML = '<ons-page id="pg' + panel.id + '">' +
       '<ons-toolbar id="tb' + panel.id + '">' +
-      '<div class="left"><ons-toolbar-button onclick="document.querySelector(\'#menu\').open()"><ons-icon icon="md-menu"></ons-icon></ons-toolbar-button></div>' +
+      '<div class="left"><ons-toolbar-button onclick="document.querySelector(\'#menuLeft\').open()"><ons-icon icon="md-menu"></ons-icon></ons-toolbar-button></div>' +
       '<div class="center">' + panel.name + '</div>' +
+      '<div class="right"><ons-toolbar-button onclick="document.querySelector(\'#menuRight\').open()"><ons-icon icon="md-more"></ons-icon></ons-toolbar-button></div>' +
       '</ons-toolbar>' +
       '<div id = "' + pcname + '"></div></ons-page>';
     document.body.appendChild(panel.template);
@@ -311,7 +322,8 @@ Onsen2Interface.prototype.renderPanelBody = function (panel, command) {
   /**
    * Set Page Display
    */
-  document.querySelector('#menu').close();
+  document.querySelector('#menuLeft').close();
+  document.querySelector('#menuRight').close();
   document.querySelector('#navigator').resetToPage('panel' + panel.id + '.html')
     .then(function () {
       renderContents();
