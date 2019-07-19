@@ -351,5 +351,5 @@ app.start(function (request) {
 });
 
 setTimeout(function () {
-  defaultCommand.execute(ui);
+  attributeCommand.execute(ui);
 }, 250);
